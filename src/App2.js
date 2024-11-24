@@ -18,7 +18,7 @@ const TodoApp = () => {
     const [aciklama, setAciklma] = useState("");
     const [filterData, setFilterData] = useState([]);
     
- //test commit
+ //test commit1
     const getAll = () => {
         axios.get("http://localhost:3100/todo-find-all")
             .then(response => {
