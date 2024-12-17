@@ -23,3 +23,12 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+{isEditing === true && ( <> <label>Göreve Başlama Tarihi </label> <DatePicker value={isebaslama ? dayjs(isebaslama) : ''} onChange={(date, dateString) => setIseBaslama(dateString)} format="YYYY-MM-DD" className="input" /> </>)} {isEditing === true && ( <> <label>Görevi Bitirme Tarihi </label> <DatePicker value={isibitirme ? dayjs(isibitirme) : ''} onChange={(date, dateString) => setIsiBitirme(dateString)} format="YYYY-MM-DD" className="input" /> </>)} {parseInt(durum) === 3 ? (<> <label>Görevi Bitirememe Sebebi</label>
+  <Input value={aciklama} onChange={(e) => setAciklma(e.target.value)} placeholder='Acıklama giriniz' className={`input`} /> </>) : ""}
