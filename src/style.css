@@ -1,0 +1,211 @@
+#root {
+  height: 96vh;
+  width: 100%;
+}
+
+.todo-app-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  height: 100%;
+  gap: 10px;
+  padding: 10px;
+  background-color: black;
+}
+
+
+.todo-app-list {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  height: 100%;
+  background: #e4e1f6;
+  color: black;
+  overflow-y: auto;
+
+
+
+}
+
+
+.todo-app-input {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  height: 100%;
+  background-color: #b4d1ff;
+  text-align: center;
+}
+
+
+.button {
+  margin-right: 5px;
+  text-align: center;
+}
+
+.btnekle,
+.btnguncelle
+{
+  width: 33%;
+  box-sizing: border-box;
+}
+
+.btnekle {
+  background-color: blue;
+}
+
+.btnguncelle {
+  background-color: green;
+}
+
+.btnsil2 {
+  background-color: red;
+  width: 20%  ;
+}
+
+
+.btnsil {
+  margin-left: auto;
+  font-size: medium;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.active {
+  background-color: #b4d1ff;
+}
+
+
+.baslik {
+  display: flex;
+  gap: 10px;
+}
+
+
+.arama {
+  display: flex;
+  gap: 10px;
+}
+
+
+.tarihbtn {
+  background-color: beige;
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 5vh;
+  width: 15%;
+}
+
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.table tr:hover {
+  background-color: #b4d1ff;
+}
+
+.table tbody {
+  background-color: #fff;
+}
+
+.tarihfont{
+  font-size:  80%;
+}
+
+.label{
+
+}
+
+@media (max-width:1000px) {
+  .todo-app-container{
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+  .todo-app-list,
+  .todo-app-input{
+    height: auto;
+  }
+
+  .btnekle,
+  .btnguncelle,
+  .btnsil2{
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .tarihbtn{
+    width: 100%;
+  }
+  .baslik,
+  .arama{
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .table-container{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .table{
+    font-size: 14px;
+    overflow: auto;
+  }
+
+}
+
+@media(max-width:768px){
+  .todo-app-container{
+    padding: 10px;
+  }
+
+  .table{
+    font-size: 13px;
+    border-radius: 5px;
+  }
+
+  .table th,
+  .table td{
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width:480px){
+  .table{
+    font-size: 12px;
+  }
+}
