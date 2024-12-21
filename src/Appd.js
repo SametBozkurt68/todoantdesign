@@ -169,13 +169,7 @@ const TodoApp = () => {
     };
 
     const showUpdateModal = (selectedTodo) => {
-        setEditTodo(selectedTodo);
-        setNewTodo(selectedTodo.todo_adi);
-        setIsStart(selectedTodo.is_verilis);
-        setIsEnd(selectedTodo.is_bitirme);
-        setDurum(selectedTodo.durum);
-        setIsiBitirme(selectedTodo.isi_bitirme);
-        setIseBaslama(selectedTodo.ise_baslama);
+
         setIsUpdateModalOpen(true);
     };
 
@@ -211,9 +205,10 @@ const TodoApp = () => {
         <div className='todo-app-container'>
 
             <div className='todo-app-list'>
+
                 <>
                     <Button type="primary" onClick={showCreateModal}>
-                    Görev Ekle
+                        Görev Ekle
                     </Button>
                     <Modal
                         title="Görev Ekle"
@@ -221,7 +216,6 @@ const TodoApp = () => {
                         onOk={handleCreate}
                         onCancel={() => setIsCreateModalOpen(false)}
                     >
-
                         <label>İş Durumu </label>
                         <Select
                             value={durum}
@@ -233,42 +227,48 @@ const TodoApp = () => {
                                 {value: "3", label: "Tamamlanmamış iş"},
                             ]}
                         />
+
                         <label>Görev Adı</label>
                         <Input
                             value={newTodo}
                             onChange={(e) => setNewTodo(e.target.value)}
                             placeholder="Görev adı"
                         />
+                        -
                         <label>Başlangıç Tarihi</label>
                         <DatePicker
                             value={isStart ? dayjs(isStart) : null}
                             onChange={(date, dateString) => setIsStart(dateString)}
+                            format="YYYY-MM-DD"
                         />
+
                         <label>Bitiş Tarihi</label>
                         <DatePicker
                             value={isEnd ? dayjs(isEnd) : null}
                             onChange={(date, dateString) => setIsEnd(dateString)}
+                            format="YYYY-MM-DD"
                         />
 
 
                     </Modal>
                 </>
+
                 <>
-                <Button type="primary" onClick={showUpdateModal}>
-                    Görev Güncelle
-                </Button>
+                    <Button type="primary" onClick={showUpdateModal}>
+                        Görev Güncelle
+                    </Button>
                     <Modal
-                        value=""
                         title="Görev Güncelle"
                         open={isUpdateModalOpen}
-                        onOk={handleCreate}
+                        onOk={handleUpdate}
                         onCancel={() => setIsUpdateModalOpen(false)}
                     >
-                        <label>İş Durumu </label>
+
+                        <label>İş Durumu</label>
                         <Select
                             value={durum}
                             onChange={(value) => setDurum(value)}
-                            className='input'
+                            className="input"
                             options={[
                                 {value: "1", label: "Yeni iş"},
                                 {value: "2", label: "Tamamlanan iş"},
@@ -276,43 +276,23 @@ const TodoApp = () => {
                             ]}
                         />
 
-                        <label>Görev Ekleme </label>
+
+                        <label>Görev Adı</label>
                         <Input
-                            size="large"
                             value={newTodo}
                             onChange={(e) => setNewTodo(e.target.value)}
-                            placeholder='Yeni todo ekle'
-                            className='input'
-                            maxLength={255}
+                            placeholder="Görev adı"
                         />
-                        <label>Görev Başlangıç Tarihi </label>
-                        <DatePicker
-                            value={isStart ? dayjs(isStart) : null}
-                            onChange={(date, dateString) => setIsStart(dateString)}
-                            format="YYYY-MM-DD"
-                            className="input"
-                        />
-                        <label>Görev Bitiş Tarihi </label>
-                        <DatePicker
-                            value={isEnd ? dayjs(isEnd) : ''}
-                            onChange={(date, dateString) => setIsEnd(dateString)}
-                            format="YYYY-MM-DD"
-                            className="input"
-                        />
-                        <label>Göreve Başlama Tarihi</label>
+
+                        <label>Başlama Tarihi</label>
                         <DatePicker
                             value={isebaslama ? dayjs(isebaslama) : null}
                             onChange={(date, dateString) => setIseBaslama(dateString)}
-                            format="YYYY-MM-DD"
-                            className="input"
                         />
-
-                        <label>Görevi Bitirme Tarihi</label>
+                        <label>Bitirme Tarihi</label>
                         <DatePicker
                             value={isibitirme ? dayjs(isibitirme) : null}
                             onChange={(date, dateString) => setIsiBitirme(dateString)}
-                            format="YYYY-MM-DD"
-                            className="input"
                         />
 
                         {parseInt(durum, 10) === 3 && (
@@ -326,29 +306,31 @@ const TodoApp = () => {
                                 />
                             </>
                         )}
+                    </Modal>
+                </>
+                <Button onClick={() => handleDelete(editTodo?.todo_id)} className="btnsil2">Sil</Button>
 
-                            < /Modal>
-                            </>
 
-                            <h1>Liste</h1>
-                            <div className='baslik'>
-                            <Input
-                            onChange={(e) => Arama(e.target.value)}
+                <h1>Liste</h1>
+                <div className='baslik'>
+                    <Input
+                        onChange={(e) => Arama(e.target.value)}
                         placeholder='Arama Yap'
                         className='arama'
                     />
 
-                    <Button className='tarihbtn' onClick={sortTodos}>Tarihe Göre Sırala</Button>
-            </div>
 
-            <table className='table'>
-                <thead>
-                <tr>
-                    <th>Durum İcon</th>
-                    <th>Görev Adı</th>
-                    <th className='tarihfont'>Görev Başlangıç Tarihi</th>
-                    <th className='tarihfont'>Görev Bitiş Tarihi</th>
-                    <th className='tarihfont'>Göreve Başlama Tarihi</th>
+                    <Button className='tarihbtn' onClick={sortTodos}>Tarihe Göre Sırala</Button>
+                </div>
+
+                <table className='table'>
+                    <thead>
+                    <tr>
+                        <th>Durum İcon</th>
+                        <th>Görev Adı</th>
+                        <th className='tarihfont'>Görev Başlangıç Tarihi</th>
+                        <th className='tarihfont'>Görev Bitiş Tarihi</th>
+                        <th className='tarihfont'>Göreve Başlama Tarihi</th>
                         <th className='tarihfont'>Görevi Bitirme Tarihi</th>
                         <th>Durum</th>
                         <th>Acıklama</th>
@@ -382,110 +364,9 @@ const TodoApp = () => {
                 </table>
             </div>
 
-            <div className='todo-app-input'>
 
-                <label>İş Durumu    </label>
-                <Select
-                    value={durum}
-                    onChange={(value) => setDurum(value)}
-                    className='input'
-                    options={[
-                        { value: "1", label: "Yeni iş" },
-                        { value: "2", label: "Tamamlanan iş" },
-                        { value: "3", label: "Tamamlanmamış iş" },
-                    ]}
-                />
-
-                <label>Görev Ekleme    </label>
-                <Input
-                    size="large"
-                    value={newTodo}
-                    onChange={(e) => setNewTodo(e.target.value)}
-                    placeholder='Yeni todo ekle'
-                    className='input'
-                    maxLength={255}
-                />
-                <label>Görev Başlangıç Tarihi    </label>
-                <DatePicker
-                    value={isStart ? dayjs(isStart) : null}
-                    onChange={(date, dateString) => setIsStart(dateString)}
-                    format="YYYY-MM-DD"
-                    className="input"
-                />
-                <label>Görev Bitiş Tarihi    </label>
-                <DatePicker
-                    value={isEnd ? dayjs(isEnd) : ''}
-                    onChange={(date, dateString) => setIsEnd(dateString)}
-                    format="YYYY-MM-DD"
-                    className="input"
-                />
-
-                <>
-                    <Button type="primary" onClick={showModal}>
-                        Open Modal
-                    </Button>
-                    <Modal
-                    title="Basic Modal"
-                    open={isModalOpen}
-                    onOk={handleOk}
-                    onCancel={handleCancel}
-                >
-
-                    {isEditing && (
-                        <>
-
-                            <label>İş Durumu </label>
-                            <Select
-                                value={durum}
-                                onChange={(value) => setDurum(value)}
-                                className='input'
-                                options={[
-                                    {value: "1", label: "Yeni iş"},
-                                    {value: "2", label: "Tamamlanan iş"},
-                                    {value: "3", label: "Tamamlanmamış iş"},
-                                ]}
-                            />
-
-                            <label>Göreve Başlama Tarihi</label>
-                            <DatePicker
-                                value={isebaslama ? dayjs(isebaslama) : null}
-                                onChange={(date, dateString) => setIseBaslama(dateString)}
-                                format="YYYY-MM-DD"
-                                className="input"
-                            />
-
-
-                            <label>Görevi Bitirme Tarihi</label>
-                            <DatePicker
-                                value={isibitirme ? dayjs(isibitirme) : null}
-                                onChange={(date, dateString) => setIsiBitirme(dateString)}
-                                format="YYYY-MM-DD"
-                                className="input"
-                            />
-
-                        </>
-                    )}
-                        {parseInt(durum, 10) === 3 && (
-                            <>
-                                <label>Görevi Bitirememe Sebebi</label>
-                                <Input
-                                    value={aciklama}
-                                    onChange={(e) => setAciklma(e.target.value)}
-                                    placeholder="Açıklama giriniz"
-                                    className="input"
-                            />
-                        </>
-                    )}
-
-                </Modal>
-               </>
-                <div className="button">
-                    <Button onClick={handleCreate} className="btnekle" disabled={isEditing}>Ekle</Button>
-                    <Button onClick={handleUpdate} className="btnguncelle">Güncelle</Button>
-                    <Button onClick={() => handleDelete(editTodo?.todo_id)} className="btnsil2">Sil</Button>
-                </div>
-            </div>
         </div>
+
     );
 };
 
