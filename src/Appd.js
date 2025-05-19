@@ -19,7 +19,6 @@ const TodoApp = () => {
     const [durum, setDurum] = useState(0);
     const [aciklama, setAciklma] = useState("");
     const [filterData, setFilterData] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
@@ -164,9 +163,7 @@ const TodoApp = () => {
         setFilterData(bulunanveri);
     };
 
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
+
 
     const showUpdateModal = (selectedTodo) => {
 
@@ -176,13 +173,13 @@ const TodoApp = () => {
     const showCreateModal = () => {
         setIsCreateModalOpen(true);
     };
+    const handleEkle=()=>{
+        setIsCreateModalOpen('');
+    }
+    const handleIptal=()=>{
+        setIsCreateModalOpen('');
+    }
 
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
-    const handleCancel = () => {
-        setIsModalOpen(false);
-    };
 
 
     const onClick = (selectedTodo) => {
